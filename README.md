@@ -2,6 +2,8 @@
 
 ![License](https://img.shields.io/github/license/AlessioCasco/GitHub-organization-terraform-importer)
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/AlessioCasco/GitHub-organization-terraform-importer)](https://goreportcard.com/report/github.com/AlessioCasco/GitHub-organization-terraform-importer)
+
 This tool fetches some of your resources from GitHub organization (repos, teams and users) and generates the correspondent terraform files and modules.
 It also allows you to import the resources into a terraform state so you can start to manage them with terraform itself.
 

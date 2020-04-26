@@ -1,0 +1,70 @@
+# Structure and available options
+# module "repo_1" {
+#   source = "../../modules/github/repos"
+#
+#   name                   = "repo_1"
+#   description            = "Description of the repo"
+#   homepage_url           = ""
+#   private                = "true|false"
+#   hasIssues              = "true|false"
+#   HasProjects            = "true|false"
+#   hasWiki                = "true|false"
+#   allow_merge_commit     = "true|false"
+#   allow_squash_merge     = "true|false"
+#   allow_rebase_merge     = "true|false"
+#   hasDownload            = "true|false"
+#   delete_branch_on_merge = "true|false"
+#   default_branch         = "master"
+#   archived               = "true|false"
+#   topics                 = ["list" "of" "tags"]
+# }
+
+{{ range .}}
+module "github_repo_{{.GithubModuleName}}" {
+  source = "../../modules/repos"
+
+  name               = "{{.Name}}"
+  {{- if .Description }}
+  description        = "{{.Description}}"
+  {{- end }}
+  {{- if .Homepage }}
+  homepage_url       = "{{.Homepage}}"
+  {{- end}}
+  {{- if eq .Private false }}
+  private            = {{.Private}}
+  {{- end }}
+  {{- if eq .HasIssues false }}
+  hasIssues          = {{.HasIssues}}
+  {{- end }}
+  {{- if eq .HasProjects true }}
+  has_projects       = {{.HasProjects}}
+  {{- end }}
+  {{- if eq .HasWiki false }}
+  hasWiki            = {{.HasWiki}}
+  {{- end }}
+  {{- if eq .AllowMergeCommit false }}
+  allow_merge_commit = {{.AllowMergeCommit}}
+  {{- end }}
+  {{- if eq .AllowSquashMerge false }}
+  allow_squash_merge = {{.AllowSquashMerge}}
+  {{- end }}
+  {{- if eq .AllowRebaseMerge false }}
+  allow_rebase_merge = {{.AllowRebaseMerge}}
+  {{- end }}
+  {{- if eq .HasDownloads false }}
+  hasDownloads       = {{.HasDownloads}}
+  {{- end }}
+  {{- if eq .DeleteBranchOnMerge false }}
+  delete_branch_on_merge = {{.DeleteBranchOnMerge}}
+  {{- end }}
+  {{- if ne .DefaultBranch "master" }}
+  default_branch     = "{{.DefaultBranch}}"
+  {{- end }}
+  {{- if eq .Archived true }}
+  archived           = {{.Archived}}
+  {{- end }}
+  {{- if .Topics }}
+  topics             = [{{.Topics}}]
+  {{- end}}
+}
+{{ end }}

@@ -1,0 +1,18 @@
+# Structure and available options
+# module "github_user_SomeUser" {
+#   source = "../../modules/github/users"
+#
+#   login = "SomeUser"
+#   role  = "member"
+# }
+
+{{ range .}}
+module "github_user_{{.GithubModuleName}}" {
+  source = "../../modules/users"
+
+  login = "{{.Login}}"
+  {{- if ne .Role "member"}}
+  role  = "{{.Role}}"
+  {{- end }}
+}
+{{ end }}

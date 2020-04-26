@@ -1,0 +1,23 @@
+# Structure and available options
+# module "github_teams_Team_1" {
+#   source = "../..modules/github/teams"
+#
+#   team_name        = "Team_1"
+#   team_description = "GitHub Team_1 for bla bla bla"
+#   members          = { "tl-user1":"maintainer", "tl-user2":"member" }
+# }
+
+{{ range .}}
+module "github_team_{{.GithubModuleName}}" {
+  source = "../../modules/teams"
+
+  team_name        = "{{.Name}}"
+  {{- if .Description }}
+  team_description = "{{.Description}}"
+  {{- end }}
+  {{- if ne .Privacy "secret" }}
+  team_privacy     = "{{.Privacy}}"
+  {{- end }}
+  team_members     = { {{.MembersString}} }
+}
+{{ end }}

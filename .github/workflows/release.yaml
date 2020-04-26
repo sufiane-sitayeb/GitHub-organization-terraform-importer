@@ -14,5 +14,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         goos: linux
         goarch: amd64
-        project_path: "./cmd/main.go"
+        project_path: "./cmd/"
         binary_name: "github_org_importer"

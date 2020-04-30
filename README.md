@@ -88,8 +88,8 @@ terraform {
 
 ## Usage | Install
 
-* Set both env vars githubToken and githubOrgANIZATION.
-* run the app
+* Set both env vars GITHUB_TOKEN and GITHUB_ORGANIZATION.
+* Run the app (`go run cmd/main.go`)
 
 ## Known issues
 

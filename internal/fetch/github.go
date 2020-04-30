@@ -52,8 +52,8 @@ type TeamsT struct {
 // InitLib initializes both auth and github library.
 func InitLib() (githubOrg string, ctx context.Context, client *github.Client) {
 
-	githubToken := os.Getenv("githubToken")
-	githubOrg = os.Getenv("githubOrgANIZATION")
+	githubToken := os.Getenv("GITHUB_TOKEN")
+	githubOrg = os.Getenv("GITHUB_ORGANIZATION")
 
 	ctx = context.Background()
 	ts := oauth2.StaticTokenSource(

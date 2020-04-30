@@ -12,9 +12,9 @@ import (
 
 func init() {
 	// check if both env vars exist
-	if !generalio.EnvExist("githubToken") && !generalio.EnvExist("githubOrgANIZATION") {
+	if !generalio.EnvExist("GITHUB_TOKEN") && !generalio.EnvExist("GITHUB_ORGANIZATION") {
 		// If one of the two env vars is not set then exit
-		fmt.Printf(" *** One of the following env vars has not been set: githubToken or githubOrgANIZATION *** \n")
+		fmt.Printf(" *** One of the following env vars has not been set: GITHUB_TOKEN or GITHUB_ORGANIZATION *** \n")
 		os.Exit(1)
 	}
 }

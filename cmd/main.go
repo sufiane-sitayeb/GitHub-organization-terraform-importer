@@ -39,9 +39,9 @@ func main() {
 	//  This maps the resource with the correspondent function for retrieving the data
 	type fnT = func() interface{}
 	resourcesToFunction := map[string]fnT{
-		"users": func() interface{} { return fetch.Users(githubOrg, ctx, client) },
-		"teams": func() interface{} { return fetch.Teams(githubOrg, ctx, client) },
-		"repos": func() interface{} { return fetch.Repos(githubOrg, ctx, client) },
+		"users": func() interface{} { return fetch.Users(ctx, githubOrg, client) },
+		"teams": func() interface{} { return fetch.Teams(ctx, githubOrg, client) },
+		"repos": func() interface{} { return fetch.Repos(ctx, githubOrg, client) },
 	}
 
 	//  Generate the terraform files and import

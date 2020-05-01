@@ -11,7 +11,7 @@ It also allows you to import the resources into a terraform state so you can sta
 
 1) Why GO: This project was a way for me to start playing and learn it.
 
-2) Your code is quite bad...: See point 1 and feel free to open a PR with improvement or an issue with suggestions, I'll try to improve it from time to time.
+2) Your code is quite bad...: See point 1 and feel free to open a PR with improvements or an issue with suggestions, I'll try to improve it from time to time.
 
 ## Prerequisites
 
@@ -74,14 +74,14 @@ I separated every resource to have its state, you normally don't want to manage 
 `backend.tmpl`
 
 ```terraform
-// remote state on S3
+# remote state on S3
 terraform {
   backend "s3" {
     bucket      = "acme/terraform-state/"
-    key         = "{{.}}" // This will be replace with the name of the resource the state holds.
+    key         = "{{.}}" # This will be replaced with the name of the resource the state holds.
     region      = "eu-west-1"
-    role_arn    = "arn:aws:iam::00000000000:role/terraform" // remove this if you don't use assume roles
-    external_id = "ops-terraform" // same as above
+    role_arn    = "arn:aws:iam::00000000000:role/terraform" # remove this if you don't use assume roles
+    external_id = "ops-terraform" # same as above
   }
 }
 ```
@@ -91,8 +91,12 @@ terraform {
 * Set both env vars GITHUB_TOKEN and GITHUB_ORGANIZATION.
 * Run the app (`go run cmd/main.go`)
 
-## Known issues
+## Known issues / missing things
 
-* `Users`, `Teams` and `Repos` are the only resources fetched right now, I'll try to add `branch-protection` and `external collaborators`
-* It would be also good to have some parameters where you can set the resources you want to import.
-* No tests.
+* [ ] `Users`, `Teams` and `Repos` are the only resources fetched right now, I'll try to add:
+  * [ ] `branch-protection`
+  * [ ] `relationships between teams and repositories`
+  * [ ] `external collaborators`
+* [ ] It would be also good to have some parameters where you can set the single resources you want to import.
+* [ ] Add `import_only=path` parameter to enable the import specific files without fetching anything first.
+* [ ] Add tests

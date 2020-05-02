@@ -12,9 +12,9 @@ import (
 
 func init() {
 	// check if both env vars exist
-	if !generalio.EnvExist("githubToken") && !generalio.EnvExist("githubOrgANIZATION") {
+	if !generalio.EnvExist("GITHUB_TOKEN") && !generalio.EnvExist("GITHUB_ORGANIZATION") {
 		// If one of the two env vars is not set then exit
-		fmt.Printf(" *** One of the following env vars has not been set: githubToken or githubOrgANIZATION *** \n")
+		fmt.Printf(" *** One of the following env vars has not been set: GITHUB_TOKEN or GITHUB_ORGANIZATION *** \n")
 		os.Exit(1)
 	}
 }
@@ -39,9 +39,9 @@ func main() {
 	//  This maps the resource with the correspondent function for retrieving the data
 	type fnT = func() interface{}
 	resourcesToFunction := map[string]fnT{
-		"users": func() interface{} { return fetch.Users(githubOrg, ctx, client) },
-		"teams": func() interface{} { return fetch.Teams(githubOrg, ctx, client) },
-		"repos": func() interface{} { return fetch.Repos(githubOrg, ctx, client) },
+		"users": func() interface{} { return fetch.Users(ctx, githubOrg, client) },
+		"teams": func() interface{} { return fetch.Teams(ctx, githubOrg, client) },
+		"repos": func() interface{} { return fetch.Repos(ctx, githubOrg, client) },
 	}
 
 	//  Generate the terraform files and import

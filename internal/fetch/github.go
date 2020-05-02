@@ -52,8 +52,8 @@ type TeamsT struct {
 // InitLib initializes both auth and github library.
 func InitLib() (githubOrg string, ctx context.Context, client *github.Client) {
 
-	githubToken := os.Getenv("githubToken")
-	githubOrg = os.Getenv("githubOrgANIZATION")
+	githubToken := os.Getenv("GITHUB_TOKEN")
+	githubOrg = os.Getenv("GITHUB_ORGANIZATION")
 
 	ctx = context.Background()
 	ts := oauth2.StaticTokenSource(
@@ -67,7 +67,7 @@ func InitLib() (githubOrg string, ctx context.Context, client *github.Client) {
 }
 
 // Teams gets all users from the organization
-func Teams(githubOrg string, ctx context.Context, client *github.Client) (teams []TeamsT) {
+func Teams(ctx context.Context, githubOrg string, client *github.Client) (teams []TeamsT) {
 
 	var allTeams []*github.Team
 
@@ -142,7 +142,7 @@ func Teams(githubOrg string, ctx context.Context, client *github.Client) (teams 
 }
 
 // Users gets all users from the organization
-func Users(githubOrg string, ctx context.Context, client *github.Client) (users []UsersT) {
+func Users(ctx context.Context, githubOrg string, client *github.Client) (users []UsersT) {
 
 	memberOptions := [2]string{"member", "admin"}
 	memberByRole := make(map[string][]*github.User)
@@ -184,7 +184,7 @@ func Users(githubOrg string, ctx context.Context, client *github.Client) (users 
 }
 
 // Repos returns all repositories from a given organization in a list of struct with only the parameters needed and used by the template.
-func Repos(githubOrg string, ctx context.Context, client *github.Client) (repos []ReposT) {
+func Repos(ctx context.Context, githubOrg string, client *github.Client) (repos []ReposT) {
 
 	// Manage GitHub pagination api
 	opt := &github.RepositoryListByOrgOptions{

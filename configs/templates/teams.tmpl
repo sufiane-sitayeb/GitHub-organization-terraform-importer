@@ -8,15 +8,15 @@
 # }
 
 {{ range .}}
-module "github_team_{{.GithubModuleName}}" {
+module "github_team_{{.TerraformName}}" {
   source = "../../modules/teams"
 
   team_name        = "{{.Name}}"
   {{- if .Description }}
   team_description = "{{.Description}}"
   {{- end }}
-  {{- if ne .Privacy "secret" }}
-  team_privacy     = "{{.Privacy}}"
+  {{- if ne .GetPrivacy "secret" }}
+  team_privacy     = "{{.GetPrivacy}}"
   {{- end }}
   team_members     = { {{.MembersString}} }
 }

@@ -20,51 +20,51 @@
 # }
 
 {{ range .}}
-module "github_repo_{{.GithubModuleName}}" {
+module "github_repo_{{.TerraformName}}" {
   source = "../../modules/repos"
 
-  name               = "{{.Name}}"
-  {{- if .Description }}
-  description        = "{{.Description}}"
+  name               = "{{.GetName}}"
+  {{- if .GetDescription }}
+  description        = "{{.GetDescription}}"
   {{- end }}
-  {{- if .Homepage }}
-  homepage_url       = "{{.Homepage}}"
+  {{- if .GetHomepage }}
+  homepage_url       = "{{.GetHomepage}}"
   {{- end}}
-  {{- if eq .Private false }}
-  private            = {{.Private}}
+  {{- if eq .GetPrivate false }}
+  private            = {{.GetPrivate}}
   {{- end }}
-  {{- if eq .HasIssues false }}
-  hasIssues          = {{.HasIssues}}
+  {{- if eq .GetHasIssues false }}
+  hasIssues          = {{.GetHasIssues}}
   {{- end }}
-  {{- if eq .HasProjects true }}
-  has_projects       = {{.HasProjects}}
+  {{- if eq .GetHasProjects true }}
+  has_projects       = {{.GetHasProjects}}
   {{- end }}
-  {{- if eq .HasWiki false }}
-  hasWiki            = {{.HasWiki}}
+  {{- if eq .GetHasWiki false }}
+  hasWiki            = {{.GetHasWiki}}
   {{- end }}
-  {{- if eq .AllowMergeCommit false }}
-  allow_merge_commit = {{.AllowMergeCommit}}
+  {{- if eq .GetAllowMergeCommit false }}
+  allow_merge_commit = {{.GetAllowMergeCommit}}
   {{- end }}
-  {{- if eq .AllowSquashMerge false }}
-  allow_squash_merge = {{.AllowSquashMerge}}
+  {{- if eq .GetAllowSquashMerge false }}
+  allow_squash_merge = {{.GetAllowSquashMerge}}
   {{- end }}
-  {{- if eq .AllowRebaseMerge false }}
-  allow_rebase_merge = {{.AllowRebaseMerge}}
+  {{- if eq .GetAllowRebaseMerge false }}
+  allow_rebase_merge = {{.GetAllowRebaseMerge}}
   {{- end }}
-  {{- if eq .HasDownloads false }}
-  hasDownloads       = {{.HasDownloads}}
+  {{- if eq .GetHasDownloads false }}
+  hasDownloads       = {{.GetHasDownloads}}
   {{- end }}
-  {{- if eq .DeleteBranchOnMerge false }}
-  delete_branch_on_merge = {{.DeleteBranchOnMerge}}
+  {{- if eq .GetDeleteBranchOnMerge false }}
+  delete_branch_on_merge = {{.GetDeleteBranchOnMerge}}
   {{- end }}
-  {{- if ne .DefaultBranch "master" }}
-  default_branch     = "{{.DefaultBranch}}"
+  {{- if ne .GetDefaultBranch "master" }}
+  default_branch     = "{{.GetDefaultBranch}}"
   {{- end }}
-  {{- if eq .Archived true }}
-  archived           = {{.Archived}}
+  {{- if eq .GetArchived true }}
+  archived           = {{.GetArchived}}
   {{- end }}
   {{- if .Topics }}
-  topics             = [{{.Topics}}]
+  topics             = {{.TopicsString}}
   {{- end}}
 }
 {{ end }}

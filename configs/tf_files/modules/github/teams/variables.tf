@@ -12,4 +12,3 @@ variable "team_privacy" {
 variable "team_members" {
   type = map(string)
 }
-

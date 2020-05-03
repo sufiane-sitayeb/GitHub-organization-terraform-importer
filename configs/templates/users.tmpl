@@ -7,12 +7,10 @@
 # }
 
 {{ range .}}
-module "github_user_{{.GithubModuleName}}" {
+module "github_user_{{.TerraformName}}" {
   source = "../../modules/users"
 
-  login = "{{.Login}}"
-  {{- if ne .Role "member"}}
-  role  = "{{.Role}}"
-  {{- end }}
+  login  = "{{ .GetLogin }}"
+  role   = "{{ .Role }}"
 }
 {{ end }}
